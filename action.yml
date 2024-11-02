@@ -13,8 +13,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://docker.io/pranayc/codegen:amd64'
+  args:
+    - ${{ inputs.input-file-path }}
+    - ${{ inputs.output-file-path }}
+    - ${{ inputs.pipeline-token }}
   env:
-    INPUT_PATH: ${{ inputs.input-file-path }}
-    OUTPUT_PATH: ${{ inputs.output-file-path }}
-    CI_TOKEN: ${{ inputs.pipeline-token }}
-    VCS_TYPE: "github"
+    VCS_TYPE: 'github'
