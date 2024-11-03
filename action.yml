@@ -1,5 +1,15 @@
 name: 'Regula testgen Workflow'
 description: 'Run Non-functional Test Agent'
+inputs:
+  input-file-path:
+    description: 'Path to the input file'
+    required: true
+  output-file-path:
+    description: 'Path to the output file'
+    required: true
+  pipeline-token:
+    description: 'Pipeline token'
+    required: true
 runs:  
   using: 'docker'
-  image: 'docker://docker.io/pranayc/codegen:amd64'
+  image: 'docker://docker.io/pranayc/codegen:github'
