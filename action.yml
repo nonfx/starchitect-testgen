@@ -13,6 +13,9 @@ inputs:
   anthropic_api_key:
     description: "Cluade API key"
     required: true
+  openai_api_key:
+    description: "OpenAI API key"
+    required: true
 runs:
   using: 'docker'
   image: 'docker://docker.io/pranayc/codegen:github1'
@@ -21,5 +24,6 @@ runs:
     OUTPUT_FILE_PATH: ${{ inputs.output_file_path }}
     PIPELINE_TOKEN: ${{ inputs.pipeline_token }}
     ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
+    OPENAI_API_KEY: ${{ inputs.openai_api_key }}
     FORCE_COLOR: 1
     NODE_OPTIONS: --no-warnings
