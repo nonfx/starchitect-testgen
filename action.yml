@@ -18,7 +18,7 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'docker://docker.io/pranayc/codegen:github1'
+  image: 'docker://docker.io/pranayc/codegen:github-action'
   env:
     INPUT_FILE_PATH: ${{ inputs.input_file_path }}
     OUTPUT_FILE_PATH: ${{ inputs.output_file_path }}
