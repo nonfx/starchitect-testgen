@@ -6,7 +6,7 @@ on:
 
 jobs:
   process-pr-comment:
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '/review')
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/update')
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +28,4 @@ jobs:
           MODEL: "sonnet"
           NODE_OPTIONS: --no-warnings
           PR_WORKFLOW: "true"
+          OUTPUTDIR: ${{ inputs.output_file_path }}
