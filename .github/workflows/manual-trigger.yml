@@ -30,7 +30,7 @@ jobs:
       - name: Run Non-functional Test Agent
         uses: docker://docker.io/pranayc/codegen:github-action
         env:
-          INPUT_FILE_PATH: ${{ inputs.input_file_path }}
+          INPUT_FILE_PATH: "./test-data/data.csv"
           OUTPUT_FILE_PATH: ${{ inputs.output_file_path }}
           PIPELINE_TOKEN: ${{ inputs.pipeline_token }}
           ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
