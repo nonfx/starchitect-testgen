@@ -1,0 +1,2 @@
+"title","urls","description","status"
+[Autoscaling.5] Amazon EC2 instances launched using Auto Scaling group launch configurations should not have Public IP addresses,https://docs.aws.amazon.com/securityhub/latest/userguide/autoscaling-controls.html#autoscaling-5,TODO
