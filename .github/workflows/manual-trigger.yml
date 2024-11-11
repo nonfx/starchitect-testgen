@@ -1,0 +1,40 @@
+name: Regula testgen Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      input_file_path:
+        description: 'Path to the input file'
+        required: true
+        type: string
+      output_file_path:
+        description: 'Path to the output file'
+        required: true
+        type: string
+      pipeline_token:
+        description: 'Pipeline token'
+        required: true
+        type: string
+      anthropic_api_key:
+        description: 'Cluade API key'
+        required: true
+        type: string
+      openai_api_key:
+        description: 'OpenAI API key'
+        required: true
+        type: string
+
+jobs:
+  run-testgen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Non-functional Test Agent
+        uses: docker://docker.io/pranayc/codegen:github-action
+        env:
+          INPUT_FILE_PATH: ${{ inputs.input_file_path }}
+          OUTPUT_FILE_PATH: ${{ inputs.output_file_path }}
+          PIPELINE_TOKEN: ${{ inputs.pipeline_token }}
+          ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
+          OPENAI_API_KEY: ${{ inputs.openai_api_key }}
+          FORCE_COLOR: 1
+          MODEL: "sonnet"
+          NODE_OPTIONS: --no-warnings

@@ -1,0 +1,30 @@
+name: PR Review Mode
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  process-pr-comment:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/review')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Run Non-functional Test Agent
+        uses: docker://docker.io/pranayc/codegen:github-action
+        env:
+          INPUT_FILE_PATH: ${{ github.workspace }}
+          OUTPUT_FILE_PATH: ${{ github.workspace }}/review-output
+          PIPELINE_TOKEN: ${{ secrets.PIPELINE_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FORCE_COLOR: 1
+          MODEL: "sonnet"
+          NODE_OPTIONS: --no-warnings
+          PR_WORKFLOW: "true"
