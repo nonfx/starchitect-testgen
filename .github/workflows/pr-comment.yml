@@ -1,0 +1,41 @@
+name: PR Comment Workflow
+
+# Trigger on issue comments (PR comments are treated as issue comments by GitHub)
+on:
+  issue_comment:
+    types: [created]
+
+# Define required permissions
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  process-comment:
+    # Only run this job if the comment is on a PR and contains the trigger word
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/update')
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the PR code
+      - name: Checkout PR
+        uses: actions/checkout@v3
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
+          fetch-depth: 0
+
+      # Step 2: Run the main process
+      - name: Run starchitect Test Agent
+        id: process
+        uses: nonfx/starchitect-testgen@main
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          input_file_path: "./test-data/data.csv"
+          output_file_path: "./test-output"
+          pipeline_token: ${{ secrets.PIPELINE_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          pr_workflow: "comment"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

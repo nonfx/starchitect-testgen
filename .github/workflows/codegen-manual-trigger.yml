@@ -1,0 +1,27 @@
+name: Regula codegen Workflow
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Starchitect Testgen Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Run starchitect Test Agent
+        uses: nonfx/starchitect-testgen@main
+        with:
+          input_file_path: "./test-data/data.csv"
+          output_file_path: "./test-output"
+          pipeline_token: ${{ secrets.PIPELINE_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          pr_workflow: "pr"
