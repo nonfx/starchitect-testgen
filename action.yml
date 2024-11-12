@@ -16,6 +16,9 @@ inputs:
   openai_api_key:
     description: "OpenAI API key"
     required: true
+  pr_workflow:
+    description: "whether to run pr workflow on commment or main PR ('pr'|'comment')"
+    required: true
 runs:
   using: 'docker'
   image: 'docker://docker.io/pranayc/codegen:github-action'
@@ -25,6 +28,7 @@ runs:
     PIPELINE_TOKEN: ${{ inputs.pipeline_token }}
     ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
     OPENAI_API_KEY: ${{ inputs.openai_api_key }}
+    PR_WORKFLOW: ${{ inputs.pr_workflow }}
     FORCE_COLOR: 1
     MODEL: "sonnet"
     NODE_OPTIONS: --no-warnings
