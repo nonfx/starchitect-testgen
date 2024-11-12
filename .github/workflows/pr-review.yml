@@ -23,6 +23,7 @@ jobs:
           INPUT_FILE_PATH: ${{ vars.INPUT_FILE_PATH }}
           OUTPUT_FILE_PATH: ${{ vars.OUTPUT_FILE_PATH }}
           PIPELINE_TOKEN: ${{ vars.PIPELINE_TOKEN }}
+          GITHUB_TOKEN: ${{ vars.PIPELINE_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FORCE_COLOR: 1
