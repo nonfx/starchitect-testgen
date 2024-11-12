@@ -28,3 +28,4 @@ runs:
     FORCE_COLOR: 1
     MODEL: "sonnet"
     NODE_OPTIONS: --no-warnings
+    OUTPUTDIR: ${{ inputs.output_file_path }}
