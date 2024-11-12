@@ -6,6 +6,7 @@ on:
 
 jobs:
   process-pr-comment:
+    environment: dev
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/update')
     runs-on: ubuntu-latest
 
@@ -19,13 +20,13 @@ jobs:
       - name: Run Non-functional Test Agent
         uses: docker://docker.io/pranayc/codegen:github-action
         env:
-          INPUT_FILE_PATH: ${{ github.workspace }}
-          OUTPUT_FILE_PATH: ${{ github.workspace }}/review-output
-          PIPELINE_TOKEN: ${{ secrets.PIPELINE_TOKEN }}
+          INPUT_FILE_PATH: ${{ vars.INPUT_FILE_PATH }}
+          OUTPUT_FILE_PATH: ${{ vars.OUTPUT_FILE_PATH }}
+          PIPELINE_TOKEN: ${{ vars.PIPELINE_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FORCE_COLOR: 1
           MODEL: "sonnet"
           NODE_OPTIONS: --no-warnings
           PR_WORKFLOW: "true"
-          OUTPUTDIR: ${{ inputs.output_file_path }}
+          OUTPUTDIR: ${{ vars.OUTPUTDIR }}
