@@ -114,6 +114,6 @@ If you have multiple urls add them inside double quotes separated by comma. for 
 
 ## Notes
 - Ensure your CSV file follows the required format
-- The action uses both Claude model for optimal results, you can skip OPENAI_API_KEY
+- The action uses Claude model for optimal results, you can skip OPENAI_API_KEY
 - All generated tests will be placed in the specified output directory
 - Each test case from the CSV file gets its own PR for better tracking
