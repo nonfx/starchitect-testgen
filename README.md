@@ -18,10 +18,11 @@ This GitHub Action automates test generation using AI models. It supports both i
 1. **Prepare Test Data**
    Create a CSV file in the following format at `./test-data/data.csv`:
    ```csv
-   id,description,expected_behavior
-   1,"Test login functionality","User should be able to login with valid credentials"
-   2,"Test password reset","Password reset email should be sent"
+   "title","urls","description","status""dms-auto-minor-version-upgrade-check","https://docs.aws.amazon.com/config/latest/developerguide/dms-auto-minor-version-upgrade-check.html","","TODO"
    ```
+If you have multiple urls add them inside double quotes separated by comma. for ex.
+   "https://example.com/url1,https://example.com/url2,https://example.com/url3"
+   
 
 2. **Configure Workflow Files**
    
