@@ -19,6 +19,18 @@ inputs:
   pr_workflow:
     description: "whether to run pr workflow on commment or main PR ('pr'|'comment')"
     required: true
+  aws-region:
+    description: 'AWS region'
+    required: true
+  aws-bucket:
+    description: 'AWS bucket'
+    required: true
+  aws-access-key-id:
+    description: 'AWS access key id'
+    required: true
+  aws-secret-access-key:
+    description: 'AWS secret access key'
+    required: true
 runs:
   using: 'docker'
   image: 'docker://docker.io/pranayc/codegen:github-action'
@@ -29,6 +41,10 @@ runs:
     ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
     OPENAI_API_KEY: ${{ inputs.openai_api_key }}
     PR_WORKFLOW: ${{ inputs.pr_workflow }}
+    AWS_REGION: ${{ inputs.aws-region }}
+    AWS_BUCKET: ${{ inputs.aws-bucket }}
+    AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
+    AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
     FORCE_COLOR: 1
     MODEL: "sonnet"
     NODE_OPTIONS: --no-warnings
